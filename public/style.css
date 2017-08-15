@@ -1,0 +1,143 @@
+
+html{
+  font-family: 'Courgette', cursive;
+}
+
+body {
+  background-color: goldenrod;
+  font-weight: bold;
+}
+
+.top {
+  height: 6em;
+  background-color: #ff9999;
+
+}
+
+.top-center {
+  color: white;
+  width: 20em;
+  height: 10em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.logo {
+  margin-top: 1em;
+  font-size: 2em;
+}
+
+.book_container{
+  width: 12.5em;
+  height: 25em;
+  position: relative;
+  margin: 40px;
+}
+
+.library-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.book_cover {
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.book_cover_hide{
+  visibility: visible;
+}
+
+.book_modal_hide{
+  visibility: hidden;
+}
+
+.book_modal{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -250px;
+  left: 0px;
+  text-align: center;
+  position: relative;
+}
+
+p {
+  margin: 5px;
+}
+
+form {
+	max-width:25em;
+	margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  z-index: 10;
+	font-family: 'Courgette', cursive;
+	width: 100%;
+  font-size: 1rem;
+  text-align: center;
+  border: 0.15em solid #F7F7F7;
+  border-radius: 3.5em;
+	box-shadow:inset 0 0 2em rgba(0, 0, 0, 0.2);
+}
+
+
+.hide_label {
+  display: none;
+}
+
+button{
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #ff9999;
+  border-radius: 15px;
+}
+
+/*media*/
+
+@media (max-width: 400px) {
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+  height: 6em;
+  background-color: #ff9999;
+}
+
+.top-center {
+  color: white;
+  width: 10em;
+  height: 15em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.logo {
+  margin-top: 1em;
+  font-size: 2em;
+}
+
+form {
+	max-width:15em;
+	margin: 1em auto;
+}
+
+.button {
+  font-family: 'Courgette', cursive;
+  width: 60%;
+  }
+}
