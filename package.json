@@ -4,7 +4,9 @@
   "description": "Would you rather app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "istanbul cover tape ./tests/front.test.js | tap-spec",
+    "devStart": "nodemon ./src/server.js",
+    "start": "node ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,9 @@
     "shot": "^3.4.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "env2": "^2.2.0",
+    "pg": "^7.1.2"
   }
 }

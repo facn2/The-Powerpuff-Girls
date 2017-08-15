@@ -18,6 +18,10 @@ const addNewBook = (formBook, callback ) => {
 			return callback(err)
 		}
 
-		const user_id = response.rows[0].id;
-		const bo
-	}
+		// const user_id = response.rows[0].id;
+		// const bo
+	})
+}
+
+
+module.exports = addNewBook
