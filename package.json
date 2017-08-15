@@ -1,0 +1,26 @@
+{
+  "name": "the-power-girls",
+  "version": "1.0.0",
+  "description": "Would you rather app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facn2/The-Power-Girls.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facn2/The-Power-Girls/issues"
+  },
+  "homepage": "https://github.com/facn2/The-Power-Girls#readme",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "nodemon": "^1.11.0",
+    "shot": "^3.4.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0"
+  }
+}
