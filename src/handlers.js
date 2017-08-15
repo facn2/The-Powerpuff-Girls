@@ -53,6 +53,26 @@ const handleGetData = (response) => {
   })
 };
 
+const handleSignup = (request, response) => {
+  let signupData = '';
+  request.on('data', chunk => {
+    signupData += chunk;
+    console.log(signupData);
+  })
+  request.on('end', () => {
+    const parsedSignup = querystring.parse(signupData);
+    const
+    // grab password and hash password
+    // grab username
+    // send it to the query function - to update db
+    console.log(parsedSignup);
+  });
+}
+
+// const hashPassword () => {
+//   console.log();
+// }
+
 const handleLogin = (request, response) => {
   console.log('Do I workkkkkk?')
 }
@@ -86,6 +106,7 @@ module.exports = {
   handleHomeRoute,
   handlePublic,
   handleGetData,
-  handleLogin
+  handleLogin,
+  handleSignup
   // handleNewBook
 }

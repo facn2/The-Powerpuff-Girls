@@ -1,4 +1,4 @@
-const {handleHomeRoute, handlePublic, handleGetData, handleNewBook, handleLogin} = require('./handlers');
+const {handleHomeRoute, handlePublic, handleGetData, handleNewBook, handleLogin, handleSignup} = require('./handlers');
 
 const router = (request, response) => {
 	const endpoint = request.url.split('/')[1];
@@ -10,7 +10,7 @@ const router = (request, response) => {
 	} else if (endpoint === 'login') {
 		handleLogin(response, request)
 	} else if (endpoint === 'sign-up') {
-		handleSignUp(request, response)
+		handleSignup(request, response)
 	} else if (endpoint === 'logout') {
 		handleLogout(request, response)
 	} else if (endpoint === 'books') {
