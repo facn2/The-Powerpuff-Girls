@@ -1,4 +1,4 @@
-const {handleHomeRoute, handlePublic, handleGetData, handleNewBook} = require('./handlers');
+const {handleHomeRoute, handlePublic, handleGetData, handleNewBook, handleLogin} = require('./handlers');
 
 const router = (request, response) => {
 	const endpoint = request.url.split('/')[1];
@@ -17,7 +17,7 @@ const router = (request, response) => {
 		handleGetData(response);
 	} else if (endpoint === 'add-new-book') {
 		handleNewBook(response, request)
-	 } else {
+ 	} else {
 		response.writeHead(404, 'Content-Type: text/html');
 		response.end('<h1>404 file not found</h1>');
 	}

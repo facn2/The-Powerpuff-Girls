@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
 const getData = require('./queries/getData');
-const addNewBook = require('./queries/addNewBook');
+const addNewBook = require('./queries/addBook');
 
 
 const handleHomeRoute = (response) => {
-  const filePath = path.join(__dirname, '..', 'public', 'index.html')
+  const filePath = path.join(__dirname, '..', 'public', 'signup.html')
   fs.readFile(filePath, (error, file) => {
     if (error) {
       response.writeHead(500, 'Content-Type: text/html')
@@ -39,7 +39,7 @@ const handlePublic = (response, request) => {
   })
 }
 
-const handleGetData = ((response) => {
+const handleGetData = (response) => {
   getData((err, res) => {
     if (err) {
       response.writeHead(500, 'Content-Type:text/html');
@@ -51,10 +51,10 @@ const handleGetData = ((response) => {
       response.end(data);
     }
   })
-});
+};
 
 const handleLogin = (request, response) => {
-  console.log('Do I wokr?')
+  console.log('Do I workkkkkk?')
 }
 
 // const handleNewBook = ((response, request) => {
