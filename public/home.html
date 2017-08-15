@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="./public/reset.css" rel="stylesheet" type="text/css">
+	<link href="./public/style.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./public/favicon.png">
+
+	<title>Book Share 📚 - The Power Girls ✨</title>
+
+</head>
+
+<body>
+
+	<section class="top">
+		<div class="top-center">
+			<h1 class="logo">Book Share 📚 - The Power Girls ✨ </h1>
+		</div>
+	</section>
+
+	<form class="form" action="/add-new-book" method="post">
+
+		<label for="book_title" class="hide_label">Book Title</label>
+		<input type="text" name="book_title" value="" placeholder="Book Title" id="book_title" required>
+
+		<label for="author" class="hide_label">Author</label>
+		<input type="text" name="author" value="" placeholder="Author" id="author" required>
+
+		<label for="username" class="hide_label">Username</label>
+		<input type="text" name="username" value="" placeholder="Username" id="username" required>
+
+		<label for="image_url" class="hide_label">Image Url</label>
+		<input type="text" name="img_url" value="" placeholder="Image URL" id="image_url" required>
+
+		<button type="submit" name="button" class="button">+ Add New Book</button>
+	</form>
+
+
+	<section>
+		<div id="library-container" class="library-container">
+		</div>
+	</section>
+	<script src="./public/index.js">
+	</script>
+</body>
+
+</html>
