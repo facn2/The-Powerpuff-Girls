@@ -4,6 +4,7 @@ const querystring = require('querystring');
 const getData = require('./queries/getData');
 const addNewBook = require('./queries/addNewBook');
 
+
 const handleHomeRoute = (response) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html')
   fs.readFile(filePath, (error, file) => {
@@ -52,26 +53,39 @@ const handleGetData = ((response) => {
   })
 });
 
-const handleNewBook = ((response, request) => {
-  let inputData = '';
+const handleLogin = (request, response) => {
+  console.log('Do I wokr?')
+}
 
-  request.on('data', chunk => {
-    inputData += chunk;
-  })
+// const handleNewBook = ((response, request) => {
+//   let inputData = '';
 
-  request.on('end', () => {
-    const formInput = querystring.parse(inputData);
-    console.log(formInput);
+//   request.on('data', chunk => {
+//     inputData += chunk;
+//   })
 
-    addNewBook(formInput, (err) => {
-      if (err) {
-        console.log(err);
-        return 'Error with Adding New Book'
-        response.writeHead(404, 'Content-Type: text/html')
-        response.end('<h1>Sorry we couldn\'t add your book</h1>')
-      }
-      response.writeHead(301, { "Location": "/" })
-      response.end()
-    })
-  })
-});
+//   request.on('end', () => {
+//     const formInput = querystring.parse(inputData);
+//     console.log(formInput);
+
+//     addNewBook(formInput, (err) => {
+//       if (err) {
+//         console.log(err);
+//         return 'Error with Adding New Book'
+//         response.writeHead(404, 'Content-Type: text/html')
+//         response.end('<h1>Sorry we couldn\'t add your book</h1>')
+//       }
+//       response.writeHead(301, { "Location": "/" })
+//       response.end()
+//     })
+//   })
+// });
+
+
+module.exports = {
+  handleHomeRoute,
+  handlePublic,
+  handleGetData,
+  handleLogin
+  // handleNewBook
+}
