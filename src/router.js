@@ -6,9 +6,9 @@ const router = (request, response) => {
 	if (endpoint === '') {
 		handleHomeRoute(response);
 	} else if (endpoint.indexOf('public') === 0) {
-		handlePublic(response, request);
+		handlePublic(request, response);
 	} else if (endpoint === 'login') {
-		handleLogin(response, request)
+		handleLogin(request, response)
 	} else if (endpoint === 'sign-up') {
 		handleSignup(request, response)
 	} else if (endpoint === 'logout') {
@@ -16,7 +16,7 @@ const router = (request, response) => {
 	} else if (endpoint === 'books') {
 		handleGetData(response);
 	} else if (endpoint === 'add-new-book') {
-		handleNewBook(response, request)
+		handleNewBook(request, response)
  	} else {
 		response.writeHead(404, 'Content-Type: text/html');
 		response.end('<h1>404 file not found</h1>');

@@ -1,7 +1,7 @@
 const dbConnection = require('../database/db_connection');
 
 const addNewUser = (username, password, callback) => { // function take the var names from handles and cb
-  const addUserQuery = 'INSERT INTO users (username, password) VALUES ($1,$2)'; // from db_build.sql
+  const addUserQuery = 'INSERT INTO users(username, password) VALUES ($1, $2);'; // from db_build.sql
   const addUserArray = [username, password]
 
   console.log(password);

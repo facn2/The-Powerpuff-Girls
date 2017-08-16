@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
 const bcrypt = require('bcryptjs');
-const addNewUser = require('./queries/addUser')
+const addNewUser = require('./queries/addUser');
 const getData = require('./queries/getData');
 const addNewBook = require('./queries/addBook');
 
@@ -20,7 +20,7 @@ const handleHomeRoute = (response) => {
   });
 }
 
-const handlePublic = (response, request) => {
+const handlePublic = (request, response) => {
   const extensionType = {
     html: 'text/html',
     css: 'text/css',
@@ -63,24 +63,20 @@ const handleSignup = (request, response) => {
   })
   request.on('end', () => {
     const parsedSignup = querystring.parse(signupData);
-    // grab username
-    const userSignup = parsedSignup.userSignup;
-    // grab password and hash password
-    const pwSignup = parsedSignup.pwSignup;
-    // send it to the query function - to update db
-    bcrypt.hash(pwSignup, 10, (err, hashPw) => {
-      console.log(hashPw);
+    const userSignup = parsedSignup.userSignup; // grab username
+    const pwSignup = parsedSignup.pwSignup; // grab password
+    bcrypt.hash(pwSignup, 10, (err, hashPw) => { //hash the password
       if (err) {
         console.log('haha', err);
         return
       } else {
-        addNewUser(userSignup, hashPw, (err, res) => {
-          console.log(res);
-          if (err){
+        addNewUser(userSignup, hashPw, (err, res) => {// send it to the query function - to update db
+          if (err) {
             console.log('hehe', err);
+            return
           } else {
-            res.writeHead(301, {"Location": "/login"})
-            res.end();
+            response.writeHead(302, {'Location': '/login'})
+            response.end();
           }
         })
       }
@@ -93,7 +89,7 @@ const handleSignup = (request, response) => {
 // }
 
 const handleLogin = (request, response) => {
-  console.log('Do I workkkkkk?')
+  console.log('Do I workkkkkk?s')
 }
 
 // const handleNewBook = ((response, request) => {
