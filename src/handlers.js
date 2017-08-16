@@ -8,7 +8,7 @@ const getData = require('./queries/getData');
 const addNewBook = require('./queries/addBook');
 
 
-const handleHomeRoute = (response) => {
+const handleHomeRoute = (request, response) => {
   const filePath = path.join(__dirname, '..', 'public', 'login.html')
   fs.readFile(filePath, (error, file) => {
     if (error) {
@@ -20,6 +20,32 @@ const handleHomeRoute = (response) => {
     }
   });
 }
+
+const handleBookPage = (request, response) => {
+  const filePath = path.join(__dirname, '..', 'public', 'home.html')
+  fs.readFile(filePath, (error, file) => {
+    if (error) {
+      response.writeHead(500, 'Content-Type: text/html')
+      response.end('<h1> sorry, the page doesnt response </h1>')
+    } else {
+      response.writeHead(200, 'Content-Type: text/html')
+      response.end(file);
+    }
+  });
+}
+
+// const handleLoginRoute = (request, response) => {
+//   const filePath = path.join(__dirname, '..', 'public', 'login.html')
+//   fs.readFile(filePath, (error, file) => {
+//     if (error) {
+//       response.writeHead(500, 'Content-Type: text/html')
+//       response.end('<h1> sorry, the page doesnt response </h1>')
+//     } else {
+//       response.writeHead(200, 'Content-Type: text/html')
+//       response.end(file);
+//     }
+//   });
+// }
 
 const handlePublic = (request, response) => {
   const extensionType = {
@@ -70,12 +96,14 @@ const handleSignup = (request, response) => {
         console.log('haha', err);
         return
       } else {
-        addNewUser(userSignup, hashPw, (err, res) => {// send it to the query function - to update db
+        addNewUser(userSignup, hashPw, (err) => {// send it to the query function - to update db
           if (err) {
             console.log('hehe', err);
             return
           } else {
-            response.writeHead(302, {'Location': '/login'})
+            // response.writeHead(200, 'Content-Type: text/html');
+            console.log('wowo');
+            response.writeHead(302, {'Location': '/'})
             response.end();
           }
         })
@@ -108,7 +136,7 @@ const handleLogin = (request, response) => {
               return
             } else {
               console.log("successful comparison!")
-              response.writeHead(302, {'Location': '/'})
+              response.writeHead(302, {'Location': '/home'})
               response.end();
             };
         })
@@ -147,6 +175,8 @@ module.exports = {
   handlePublic,
   handleGetData,
   handleLogin,
-  handleSignup
+  handleSignup,
+  // handleLoginRoute,
+  handleBookPage
   // handleNewBook
 }
