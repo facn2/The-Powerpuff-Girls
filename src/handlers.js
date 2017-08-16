@@ -7,6 +7,13 @@ const checkPw = require('./queries/checkPw');
 const getData = require('./queries/getData');
 const addNewBook = require('./queries/addBook');
 
+const { parse } = require('cookie');
+const jwt = require('jsonwebtoken');
+
+const maxAge = new Date();
+maxAge.setDate(maxAge.getDate()+14); //setting max age of the cookie to two weeks
+const secret = 'this shit is potatoes';
+
 
 const handleHomeRoute = (request, response) => {
   const filePath = path.join(__dirname, '..', 'public', 'login.html')
@@ -33,19 +40,6 @@ const handleBookPage = (request, response) => {
     }
   });
 }
-
-// const handleLoginRoute = (request, response) => {
-//   const filePath = path.join(__dirname, '..', 'public', 'login.html')
-//   fs.readFile(filePath, (error, file) => {
-//     if (error) {
-//       response.writeHead(500, 'Content-Type: text/html')
-//       response.end('<h1> sorry, the page doesnt response </h1>')
-//     } else {
-//       response.writeHead(200, 'Content-Type: text/html')
-//       response.end(file);
-//     }
-//   });
-// }
 
 const handlePublic = (request, response) => {
   const extensionType = {
@@ -101,8 +95,6 @@ const handleSignup = (request, response) => {
             console.log('hehe', err);
             return
           } else {
-            // response.writeHead(200, 'Content-Type: text/html');
-            console.log('wowo');
             response.writeHead(302, {'Location': '/'})
             response.end();
           }
@@ -136,14 +128,36 @@ const handleLogin = (request, response) => {
               return
             } else {
               console.log("successful comparison!")
-              response.writeHead(302, {'Location': '/home'})
-              response.end();
+
+              const cookie1 = jwt.sign((userLogin, hashPw), secret)
+              console.log(cookie1)
+
+              response.writeHead(
+              302, 
+              {
+                'Location': '/home',
+                'Set-Cookie': [`logged_in=true; expires=${maxAge};`, `user_session=${cookie1};  expires=${maxAge};`],
+              })
+
+              return response.end()
             };
         })
       }
     })
   })
 };
+
+const handleLogout = (request, response) => {
+    response.writeHead(
+      302,
+      {
+        'Location': '/home',
+        'Set-Cookie': [`user_sessions=0; Max-Age=0`, `logged_in=false, Max-Age=0`]
+      }
+    );
+    return response.end()
+  }
+
 
 // const handleNewBook = ((response, request) => {
 //   let inputData = '';
@@ -173,10 +187,10 @@ const handleLogin = (request, response) => {
 module.exports = {
   handleHomeRoute,
   handlePublic,
+  handleBookPage,
   handleGetData,
   handleLogin,
   handleSignup,
-  // handleLoginRoute,
-  handleBookPage
+  handleLogout
   // handleNewBook
 }

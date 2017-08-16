@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie": "^0.3.1",
     "env2": "^2.2.0",
+    "jsonwebtoken": "^7.4.2",
     "pg": "^7.1.2"
   }
 }
