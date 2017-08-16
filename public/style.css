@@ -1,21 +1,23 @@
-
-html{
-  font-family: 'Courgette', cursive;
+html {
+  font-family: 'Calligraffitti', cursive;
 }
 
 body {
-  background-color: goldenrod;
+  background-color: #89cff0;
   font-weight: bold;
+  color: #FFB6C1;
+  text-shadow: 0.15em 0.15em #ff6a6a;
 }
 
 .top {
   height: 6em;
-  background-color: #ff9999;
-
+  background-color: #B2F187;
+  box-shadow: 0.5em 0.5em 0.25em #32cd32;
 }
 
 .top-center {
-  color: white;
+  color: #FFB6C1;
+  text-shadow: 0.15em 0.15em #ff6a6a;
   width: 20em;
   height: 10em;
   position: absolute;
@@ -26,18 +28,29 @@ body {
 }
 
 .logo {
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-size: 2em;
 }
 
-.book_container{
+.sign_up {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.log_in {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.book_container {
   width: 12.5em;
   height: 25em;
   position: relative;
   margin: 40px;
 }
 
-.library-container{
+.library-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -49,15 +62,15 @@ body {
   visibility: hidden;
 }
 
-.book_cover_hide{
+.book_cover_hide {
   visibility: visible;
 }
 
-.book_modal_hide{
+.book_modal_hide {
   visibility: hidden;
 }
 
-.book_modal{
+.book_modal {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -72,8 +85,8 @@ p {
 }
 
 form {
-	max-width:25em;
-	margin: 1em auto;
+  max-width: 25em;
+  margin: 1em auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,63 +94,58 @@ form {
 
 input {
   z-index: 10;
-	font-family: 'Courgette', cursive;
-	width: 100%;
+  font-family: 'Calligraffitti', cursive;
+  width: 100%;
   font-size: 1rem;
   text-align: center;
   border: 0.15em solid #F7F7F7;
   border-radius: 3.5em;
-	box-shadow:inset 0 0 2em rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 2em rgba(0, 0, 0, 0.2);
 }
-
 
 .hide_label {
   display: none;
 }
 
-button{
+button {
   padding: 10px 15px;
   color: #fff;
   background-color: #ff9999;
   border-radius: 15px;
 }
 
+
 /*media*/
 
 @media (max-width: 400px) {
-* {
+  * {
     margin: 0;
     padding: 0;
-}
-
-.top {
-  height: 6em;
-  background-color: #ff9999;
-}
-
-.top-center {
-  color: white;
-  width: 10em;
-  height: 15em;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
-}
-
-.logo {
-  margin-top: 1em;
-  font-size: 2em;
-}
-
-form {
-	max-width:15em;
-	margin: 1em auto;
-}
-
-.button {
-  font-family: 'Courgette', cursive;
-  width: 60%;
+  }
+  .top {
+    height: 6em;
+    background-color: #ff9999;
+  }
+  .top-center {
+    color: white;
+    width: 10em;
+    height: 15em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+  }
+  .logo {
+    margin-top: 1em;
+    font-size: 2em;
+  }
+  form {
+    max-width: 15em;
+    margin: 1em auto;
+  }
+  .button {
+    font-family: 'Calligraffitti', cursive;
+    width: 60%;
   }
 }

@@ -1,12 +1,12 @@
 var libraryContainer = document.querySelector('#library-container');
 
-function createAndSetAttribute (typeOfElement, className) {
+function createAndSetAttribute(typeOfElement, className) {
   var createdElement = document.createElement(typeOfElement);
   createdElement.setAttribute('class', className);
   return createdElement;
 }
 
-function createAndSetInnerText (typeOfElement, innerText) {
+function createAndSetInnerText(typeOfElement, innerText) {
   var createdElement = document.createElement(typeOfElement);
   createdElement.innerText = innerText;
   return createdElement;
