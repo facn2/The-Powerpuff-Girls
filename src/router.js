@@ -1,16 +1,18 @@
-const {handleHomeRoute, handlePublic, handleGetData, handleNewBook, handleLogin, handleSignup} = require('./handlers');
+const {handleHomeRoute, handlePublic, handleGetData, handleNewBook, handleLogin, handleSignup, handleBookPage} = require('./handlers');
 
 const router = (request, response) => {
 	const endpoint = request.url.split('/')[1];
 
 	if (endpoint === '') {
-		handleHomeRoute(response);
+		handleHomeRoute(request, response);
 	} else if (endpoint.indexOf('public') === 0) {
 		handlePublic(request, response);
 	} else if (endpoint === 'login') {
 		handleLogin(request, response)
 	} else if (endpoint === 'sign-up') {
 		handleSignup(request, response)
+	} else if (endpoint === 'home') {
+		handleBookPage(request, response)
 	} else if (endpoint === 'logout') {
 		handleLogout(request, response)
 	} else if (endpoint === 'books') {

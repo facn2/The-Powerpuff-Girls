@@ -4,13 +4,13 @@ const addNewUser = (username, password, callback) => { // function take the var 
   const addUserQuery = 'INSERT INTO users(username, password) VALUES ($1, $2);'; // from db_build.sql
   const addUserArray = [username, password]
 
-  dbConnection.query(addUserQuery, addUserArray, (err, res) => { //conect between addUserArray to dbConnection
+  dbConnection.query(addUserQuery, addUserArray, (err) => { //conect between addUserArray to dbConnection
     if (err) {
       console.log('heeheehee', err);
       return
     } else {
       console.log("katia");
-      callback(null, res) // null cuz we don't have a error
+      callback(null) // null cuz we don't have a error
     }
   })
 
