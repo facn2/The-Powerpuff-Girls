@@ -3,12 +3,13 @@ const path = require('path');
 const querystring = require('querystring');
 const bcrypt = require('bcryptjs');
 const addNewUser = require('./queries/addUser');
+const checkPw = require('./queries/checkPw');
 const getData = require('./queries/getData');
 const addNewBook = require('./queries/addBook');
 
 
 const handleHomeRoute = (response) => {
-  const filePath = path.join(__dirname, '..', 'public', 'signup.html')
+  const filePath = path.join(__dirname, '..', 'public', 'login.html')
   fs.readFile(filePath, (error, file) => {
     if (error) {
       response.writeHead(500, 'Content-Type: text/html')
@@ -59,7 +60,6 @@ const handleSignup = (request, response) => {
   let signupData = '';
   request.on('data', chunk => {
     signupData += chunk;
-    console.log(signupData);
   })
   request.on('end', () => {
     const parsedSignup = querystring.parse(signupData);
@@ -84,13 +84,38 @@ const handleSignup = (request, response) => {
   });
 }
 
-// const hashPassword () => {
-//   console.log();
-// }
 
 const handleLogin = (request, response) => {
-  console.log('Do I workkkkkk?s')
-}
+    let loginData = '';
+    request.on('data', chunk => {
+      loginData += chunk;
+    })
+    request.on('end', () => {
+      const parsedLogin = querystring.parse(loginData);
+      console.log("login data after parsed", loginData);
+      const userLogin = parsedLogin.userLogin; // grab username
+      const pwLogin = parsedLogin.pwLogin; // grab password
+
+      checkPw(userLogin, (err, res) => {
+        if(err) {
+          console.log("fififi", err);
+          return
+        } else {
+          const hashPw = res.rows[0].password;
+          bcrypt.compare(pwLogin, hashPw, (error, resp) => { //compare the password
+            if (error)   {
+              console.log('tatahaha', error)
+              return
+            } else {
+              console.log("successful comparison!")
+              response.writeHead(302, {'Location': '/'})
+              response.end();
+            };
+        })
+      }
+    })
+  })
+};
 
 // const handleNewBook = ((response, request) => {
 //   let inputData = '';

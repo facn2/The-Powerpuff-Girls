@@ -4,7 +4,6 @@ const addNewUser = (username, password, callback) => { // function take the var 
   const addUserQuery = 'INSERT INTO users(username, password) VALUES ($1, $2);'; // from db_build.sql
   const addUserArray = [username, password]
 
-  console.log(password);
   dbConnection.query(addUserQuery, addUserArray, (err, res) => { //conect between addUserArray to dbConnection
     if (err) {
       console.log('heeheehee', err);
