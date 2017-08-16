@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
+const bcrypt = require('bcryptjs');
+const addNewUser = require('./queries/addUser')
 const getData = require('./queries/getData');
 const addNewBook = require('./queries/addBook');
 
@@ -61,11 +63,28 @@ const handleSignup = (request, response) => {
   })
   request.on('end', () => {
     const parsedSignup = querystring.parse(signupData);
-    const
-    // grab password and hash password
     // grab username
+    const userSignup = parsedSignup.userSignup;
+    // grab password and hash password
+    const pwSignup = parsedSignup.pwSignup;
     // send it to the query function - to update db
-    console.log(parsedSignup);
+    bcrypt.hash(pwSignup, 10, (err, hashPw) => {
+      console.log(hashPw);
+      if (err) {
+        console.log('haha', err);
+        return
+      } else {
+        addNewUser(userSignup, hashPw, (err, res) => {
+          console.log(res);
+          if (err){
+            console.log('hehe', err);
+          } else {
+            res.writeHead(301, {"Location": "/login"})
+            res.end();
+          }
+        })
+      }
+    })
   });
 }
 
