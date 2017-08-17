@@ -15,4 +15,4 @@ const checkPw = (userLogin, callback) => {
 
 }
 
-module.exports = checkPw
+module.exports = checkPw;

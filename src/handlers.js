@@ -3,8 +3,8 @@ const path = require('path');
 const querystring = require('querystring');
 const bcrypt = require('bcryptjs');
 const addNewUser = require('./queries/addUser');
-const checkPw = require('./queries/checkPw');
-const getData = require('./queries/getData');
+const checkPw = require('./queries/validateP');
+const getData = require('./queries/getBooks');
 const addNewBook = require('./queries/addBook');
 
 const { parse } = require('cookie'); // cookie.parse
