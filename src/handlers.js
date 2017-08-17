@@ -95,7 +95,7 @@ const handleSignup = (request, response) => {
         console.log('haha', err);
         return
       } else {
-        addNewUser(userSignup, hashPw, (err) => {// send it to the query function - to update db
+        addNewUser(userSignup, hashPw, (err) => { // send it to the query function - to update db
           if (err) {
             console.log('hehe', err);
             return
