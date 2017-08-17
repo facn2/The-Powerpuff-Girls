@@ -10,7 +10,7 @@ const checkPw = (userLogin, callback) => {
       return
     } else {
       console.log("success pulling pw");
-      callback(null, res) // null cuz we don't have a error
+      callback(null, res.rows[0]) // null cuz we don't have a error
     }
   })
 

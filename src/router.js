@@ -1,4 +1,4 @@
-const {handleHomeRoute, handlePublic, handleGetData, handleLogin, handleSignup, handleLogout, handleBookPage} = require('./handlers');
+const {handleHomeRoute, handlePublic, handleGetData, handleLogin, handleSignup, handleLogout, handleBookPage, handleNewBook} = require('./handlers');
 
 const router = (request, response) => {
 	const endpoint = request.url.split('/')[1];
