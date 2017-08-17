@@ -7,12 +7,11 @@ const checkPw = require('./queries/checkPw');
 const getData = require('./queries/getData');
 const addNewBook = require('./queries/addBook');
 
-const { parse } = require('cookie');
+const { parse } = require('cookie'); // cookie.parse
 const jwt = require('jsonwebtoken');
+const cookies = require('cookies')
 
-const maxAge = new Date();
-maxAge.setDate(maxAge.getDate()+14); //setting max age of the cookie to two weeks
-const secret = 'this shit is potatoes';
+const secret = 'this shit is potatoes';  
 
 
 const handleHomeRoute = (request, response) => {
@@ -28,8 +27,15 @@ const handleHomeRoute = (request, response) => {
   });
 }
 
+
 const handleBookPage = (request, response) => {
   const filePath = path.join(__dirname, '..', 'public', 'home.html')
+
+  if (!request.headers.cookie) {
+      response.writeHead(302, {'Location' : '/'})
+      response.end();
+  }
+
   fs.readFile(filePath, (error, file) => {
     if (error) {
       response.writeHead(500, 'Content-Type: text/html')
@@ -112,7 +118,6 @@ const handleLogin = (request, response) => {
     })
     request.on('end', () => {
       const parsedLogin = querystring.parse(loginData);
-      console.log("login data after parsed", loginData);
       const userLogin = parsedLogin.userLogin; // grab username
       const pwLogin = parsedLogin.pwLogin; // grab password
 
@@ -120,26 +125,28 @@ const handleLogin = (request, response) => {
         if(err) {
           console.log("fififi", err);
           return
+        } else if (!res) {
+          response.writeHead(302, 
+              {
+                'Location': '/',
+              })
+          response.end()
         } else {
-          const hashPw = res.rows[0].password;
+          const hashPw = res.password;
           bcrypt.compare(pwLogin, hashPw, (error, resp) => { //compare the password
             if (error)   {
               console.log('tatahaha', error)
               return
             } else {
-              console.log("successful comparison!")
-
               const cookie1 = jwt.sign((userLogin, hashPw), secret)
-              console.log(cookie1)
 
               response.writeHead(
               302, 
               {
                 'Location': '/home',
-                'Set-Cookie': [`logged_in=true; expires=${maxAge};`, `user_session=${cookie1};  expires=${maxAge};`],
+                'Set-Cookie': `user_session=${cookie1}; Max-Age=9999;`
               })
-
-              return response.end()
+              response.end()
             };
         })
       }
@@ -151,13 +158,12 @@ const handleLogout = (request, response) => {
     response.writeHead(
       302,
       {
-        'Location': '/home',
-        'Set-Cookie': [`user_sessions=0; Max-Age=0`, `logged_in=false, Max-Age=0`]
+        'Location': '/',
+        'Set-Cookie': `user_session=0; Max-Age=0`
       }
     );
-    return response.end()
+    response.end()
   }
-
 
 // const handleNewBook = ((response, request) => {
 //   let inputData = '';
