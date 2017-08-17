@@ -4,8 +4,6 @@
 
 ### How to use our Website:
 
-Check out our book sharing [website]().
-
 To check out the app, please clone this repository.
 ```
 git clone
@@ -49,24 +47,10 @@ We want to create a web application which displays books for people in Founders 
 
 **users**
 
-| id  |  name | surname |
+| id  |  username | password |
 | --- |:-----:|:-------:|
-| 1 | Katia | Ashkar |
+| 1 | Katia | jfgh465kdfb347684fdbnbh89375t5 |
 
-**reservations**
-
-| id  | book_id | users_id | due_date |
-| --- |:---------:|:------:| -------: |
-| 1 | 1 | 1 | 15 Aug 2017|
-
-
-### Wireframe:
-
-![altinline]()
-
-### Architecture:
-
-![altinline]()
 
 ### Code Guidelines:
 
@@ -83,4 +67,3 @@ We want to create a web application which displays books for people in Founders 
 * Create database
 * Create back-end server
 * Create front-end client
-* Establish Heroku
