@@ -9,9 +9,8 @@ const addNewBook = require('./queries/addBook');
 
 const { parse } = require('cookie'); // cookie.parse
 const jwt = require('jsonwebtoken');
-const cookies = require('cookies')
 
-const secret = 'this shit is potatoes';  
+const secret = 'this shit is potatoes';
 
 
 const handleHomeRoute = (request, response) => {
@@ -126,7 +125,7 @@ const handleLogin = (request, response) => {
           console.log("fififi", err);
           return
         } else if (!res) {
-          response.writeHead(302, 
+          response.writeHead(302,
               {
                 'Location': '/',
               })
@@ -141,7 +140,7 @@ const handleLogin = (request, response) => {
               const cookie1 = jwt.sign((userLogin, hashPw), secret)
 
               response.writeHead(
-              302, 
+              302,
               {
                 'Location': '/home',
                 'Set-Cookie': `user_session=${cookie1}; Max-Age=9999;`
@@ -165,29 +164,29 @@ const handleLogout = (request, response) => {
     response.end()
   }
 
-// const handleNewBook = ((response, request) => {
-//   let inputData = '';
+const handleNewBook = (request, response) => {
 
-//   request.on('data', chunk => {
-//     inputData += chunk;
-//   })
+  let inputData = '';
+  request.on('data', chunk => {
+    inputData += chunk;
+  })
+  request.on('end', () => {
+    const formInput = querystring.parse(inputData);
+    console.log("input from form", formInput);
 
-//   request.on('end', () => {
-//     const formInput = querystring.parse(inputData);
-//     console.log(formInput);
-
-//     addNewBook(formInput, (err) => {
-//       if (err) {
-//         console.log(err);
-//         return 'Error with Adding New Book'
-//         response.writeHead(404, 'Content-Type: text/html')
-//         response.end('<h1>Sorry we couldn\'t add your book</h1>')
-//       }
-//       response.writeHead(301, { "Location": "/" })
-//       response.end()
-//     })
-//   })
-// });
+    addNewBook(formInput, (err) => {
+      if (err) {
+        console.log("error with books", err);
+        // return 'Error with Adding New Book';
+        response.writeHead(404, 'Content-Type: text/html');
+        response.end('<h1>Sorry we couldn\'t add your book</h1>');
+      } else {
+        response.writeHead(302, { "Location": "/home" });
+        response.end();
+      }
+    })
+  })
+};
 
 
 module.exports = {
@@ -197,6 +196,6 @@ module.exports = {
   handleGetData,
   handleLogin,
   handleSignup,
-  handleLogout
-  // handleNewBook
+  handleLogout,
+  handleNewBook
 }

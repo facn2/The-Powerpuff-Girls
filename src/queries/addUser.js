@@ -9,7 +9,7 @@ const addNewUser = (username, password, callback) => { // function take the var 
       console.log('heeheehee', err);
       return
     } else {
-      console.log("katia");
+      console.log('succsses adding user');
       callback(null) // null cuz we don't have a error
     }
   })

@@ -14,7 +14,7 @@ CREATE TABLE books(
   book_name TEXT NOT NULL,
   author TEXT NOT NULL,
   user_id INTEGER,
-  cover_url TEXT NOT NUll
+  cover_url TEXT
 );
 
 INSERT INTO users(username, password) VALUES
