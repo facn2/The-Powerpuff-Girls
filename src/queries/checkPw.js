@@ -6,8 +6,7 @@ const checkPw = (userLogin, callback) => {
 
   dbConnection.query(checkPwQuery, checkPwArray, (err, res) => { //conect between addUserArray to dbConnection
     if (err) {
-      console.log('tihihihihi', err);
-      return
+      return callback(err)
     } else {
       console.log("success pulling pw");
       callback(null, res.rows[0]) // null cuz we don't have a error
