@@ -92,12 +92,12 @@ const handleSignup = (request, response) => {
     const pwSignup = parsedSignup.pwSignup; // grab password
     bcrypt.hash(pwSignup, 10, (err, hashPw) => { //hash the password
       if (err) {
-        console.log('haha', err);
+        console.log('Error with signup', err);
         return
       } else {
         addNewUser(userSignup, hashPw, (err) => { // send it to the query function - to update db
           if (err) {
-            console.log('hehe', err);
+            console.log('error with adding user to db', err);
             return
           } else {
             response.writeHead(302, {'Location': '/'})
@@ -122,7 +122,7 @@ const handleLogin = (request, response) => {
 
       checkPw(userLogin, (err, res) => {
         if(err) {
-          console.log("fififi", err);
+          console.log('login error', err);
           return
         } else if (!res) {
           response.writeHead(302,
@@ -134,7 +134,7 @@ const handleLogin = (request, response) => {
           const hashPw = res.password;
           bcrypt.compare(pwLogin, hashPw, (error, resp) => { //compare the password
             if (error)   {
-              console.log('tatahaha', error)
+              console.log('error comparing password with user password', error)
               return
             } else {
               const cookie1 = jwt.sign((userLogin, hashPw), secret)
@@ -172,11 +172,10 @@ const handleNewBook = (request, response) => {
   })
   request.on('end', () => {
     const formInput = querystring.parse(inputData);
-    console.log("input from form", formInput);
 
     addNewBook(formInput, (err) => {
       if (err) {
-        console.log("error with books", err);
+        console.log('error with books', err);
         // return 'Error with Adding New Book';
         response.writeHead(404, 'Content-Type: text/html');
         response.end('<h1>Sorry we couldn\'t add your book</h1>');
