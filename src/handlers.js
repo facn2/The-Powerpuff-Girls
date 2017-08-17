@@ -9,7 +9,6 @@ const addNewBook = require('./queries/addBook');
 
 const { parse } = require('cookie'); // cookie.parse
 const jwt = require('jsonwebtoken');
-const cookies = require('cookies')
 
 const secret = 'this shit is potatoes';  
 

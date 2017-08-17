@@ -3,6 +3,9 @@ html {
 }
 
 body {
+  background-image: url(./book-flipping.jpeg);
+  background-repeat: none;
+  background-size: cover;
   background-color: #89cff0;
   font-weight: bold;
   color: #FFB6C1;
